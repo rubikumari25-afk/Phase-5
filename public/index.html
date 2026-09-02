@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Gemini</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ask Gemini</h1>
+
+    <input
+    id="question"
+    type="text"
+    placeholder="Ask your question"
+    >
+
+    <button onclick="askGemini()">Submit</button>
+
+    <h2>Answer:</h2>
+    <p id="answer"></p>
+
+    <script>
+        async function askGemini() {
+
+            const question = document.getElementById("question").value;
+
+            if (question.trim() === "") {
+                document.getElementById("answer").innerText = "Please enter a question.";
+                return;
+            }
+
+            document.getElementById("answer").innerText = "Gemini is thinking...";
+
+            const response = await fetch("/ask",{
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+                    question: question
+                })
+            });
+
+            const data = await response.json();
+
+            document.getElementById("answer").innerText = data.answer;
+            
+        }
+
+    </script>
+</body>
+</html>
