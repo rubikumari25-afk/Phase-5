@@ -38,13 +38,14 @@ Question: ${question}`
 
 }catch (error){
 
-    console.log(error);
+    console.log("GEMINI ERROR:");
+    console.log(error.message);
 
     res.status(500).json({
         answer: "Something went wrong. Please try again."
     });
 
-  }
+}
 
 });
 

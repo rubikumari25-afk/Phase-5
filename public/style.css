@@ -1,41 +1,331 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    text-align: center;
-    padding: 50px;
+
+    background:
+        radial-gradient(circle at 10% 20%, #ffb3df, transparent 28%),
+        radial-gradient(circle at 90% 15%, #9cc7ff, transparent 30%),
+        radial-gradient(circle at 15% 90%, #9ff3ed, transparent 28%),
+        radial-gradient(circle at 90% 90%, #c8a7ff, transparent 30%),
+        linear-gradient(135deg, #fff8fc, #f4f7ff);
+
+    color: #202124;
+
+    padding: 55px 20px;
 }
 
+
+/* =========================
+   MAIN TITLE
+========================= */
 h1 {
-    color: #333;
+    text-align: center;
+
+    font-size: 48px;
+    font-weight: 700;
+
+    margin-bottom: 35px;
+
+    color: #6c4de6;
+
+    text-shadow:
+        0 4px 15px rgba(108, 77, 230, 0.25);
 }
 
-input {
-    width: 400px;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+h1::after {
+    content: "✦ Your AI assistant";
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    letter-spacing: 2px;
+
+    color: #777;
 }
+
+
+/* =========================
+   QUESTION
+========================= */
+
+#question {
+    display: block;
+
+    width: 700px;
+    max-width: 90%;
+
+    height: 62px;
+
+    margin: 0 auto;
+
+    padding: 0 22px;
+
+    border: 2px solid transparent;
+
+    border-radius: 20px;
+
+    outline: none;
+
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(
+            90deg,
+            #4285f4,
+            #9b51e0,
+            #ec4899
+        ) border-box;
+
+    font-size: 16px;
+
+    color: #333;
+
+    box-shadow:
+        0 12px 30px rgba(91, 71, 170, 0.15);
+
+    transition: 0.3s;
+}
+
+#question::placeholder {
+    color: #999;
+}
+
+#question:focus {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(91, 71, 170, 0.22);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
 
 button {
-    padding: 12px 20px;
-    margin-left: 10px;
-    font-size: 16px;
+    display: block;
+
+    margin: 18px auto 0;
+
+    padding: 13px 30px;
+
     border: none;
-    border-radius: 6px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4285f4,
+            #7655d6,
+            #e84b9b
+        );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
     cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(105, 75, 200, 0.3);
+
+    transition: 0.25s;
 }
+
+button:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 12px 28px rgba(105, 75, 200, 0.4);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   ANSWER TITLE
+========================= */
 
 h2 {
-    color: #333;
+    width: 700px;
+    max-width: 90%;
+
+    margin: 55px auto 12px;
+
+    font-size: 17px;
+
+    color: #555;
+
+    padding-left: 15px;
+
+    border-left: 4px solid #7655d6;
 }
 
+
+/* =========================
+   GEMINI RESPONSE
+========================= */
+
 #answer {
-    width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
+    position: relative;
+
+    width: 700px;
+    max-width: 90%;
+
+    min-height: 180px;
+
+    margin: 0 auto;
+
+    padding: 28px 30px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    color: #333;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
     text-align: left;
-    line-height: 1.6;
+
+    box-shadow:
+        0 15px 40px rgba(70, 50, 140, 0.12);
+
+    backdrop-filter: blur(12px);
+
+    overflow: hidden;
+}
+
+
+/* Gemini colorful glow */
+
+#answer::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18px;
+    right: 22px;
+
+    font-size: 24px;
+
+    color: #8b5cf6;
+}
+
+
+/* =========================
+   BACKGROUND DECORATION
+========================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 180px;
+    height: 180px;
+
+    top: 120px;
+    left: -70px;
+
+    border-radius: 50%;
+
+    background: #ff75c8;
+
+    filter: blur(80px);
+
+    opacity: 0.35;
+
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 200px;
+    height: 200px;
+
+    right: -80px;
+    bottom: 80px;
+
+    border-radius: 50%;
+
+    background: #7c6cff;
+
+    filter: blur(90px);
+
+    opacity: 0.35;
+
+    z-index: -1;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes gradient {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 40px 15px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    #question,
+    h2,
+    #answer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #question {
+        height: 58px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #answer {
+        min-height: 160px;
+        padding: 22px;
+    }
 }
